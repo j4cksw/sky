@@ -1,5 +1,6 @@
 import pygame,random
 from blocks import *
+import os
 
 def pRandom():
     return int(random.uniform(0,4))
@@ -14,9 +15,9 @@ class BlockManager():
         #Create Blocks
         for i in range(25*19):
             self.blocks.append(Block());
-        
+
         self.allBlocks = pygame.sprite.Group(self.blocks)
-        
+
     def vInit(self):
         init_posX = 65
         init_posY = 455
@@ -34,9 +35,9 @@ class BlockManager():
             self.blocks[i+19*10].vInit(init_posX, init_posY+self.block_height*10, self.blockimage[pRandom()])
             init_posX += self.block_width
         self.currentrow = 11
-            
-            
-        
+
+
+
     def vProcess(self, pBall = None):
         bool = False
         if pBall != None:
@@ -50,7 +51,7 @@ class BlockManager():
                     self.blocks[i].imageList = self.disableimage
                     self.blocks[i].Enable = False
         return bool
-    
+
     def vMoveUp(self):
         for i in range(len(self.blocks)):
             self.blocks[i].vMoveUp()
@@ -60,14 +61,14 @@ class BlockManager():
                 self.blocks[i+19*self.currentrow].vInit(init_posX, init_posY+self.block_height*10, self.blockimage[pRandom()])
                 init_posX += self.block_width
             self.currentrow += 1
-        
-        
-    
+
+
+
     def vRender(self):
         for i in range(len(self.blocks)):
             self.blocks[i].vRender()
-        
-    
+
+
     def vLoadImage(self):
         self.blockimage = []
         self.blockimage_red = []
@@ -75,36 +76,36 @@ class BlockManager():
         self.blockimage_blue = []
         self.explodeimage = []
         self.disableimage = []
-        tmpimage = pygame.image.load("data\image\\blocks\disable.png").convert_alpha()
+        tmpimage = pygame.image.load(os.path.abspath("data/image/blocks/disable.png")).convert_alpha()
         self.disableimage.append(tmpimage)
         self.explodeimage.append(tmpimage)
         #Load common block figure
-        tmpImage = pygame.image.load("data\image\\blocks\\block.png")
+        tmpImage = pygame.image.load(os.path.abspath("data/image/blocks/block.png"))
         tmpImage = tmpImage.convert_alpha()
         self.blockimage.append([tmpImage])
-        tmpImage = pygame.image.load("data\image\\blocks\\block_red.png")
+        tmpImage = pygame.image.load(os.path.abspath("data/image/blocks/block_red.png"))
         tmpImage = tmpImage.convert_alpha()
         self.blockimage.append([tmpImage])
-        tmpImage = pygame.image.load("data\image\\blocks\\block_yellow.png")
+        tmpImage = pygame.image.load(os.path.abspath("data/image/blocks/block_yellow.png"))
         tmpImage = tmpImage.convert_alpha()
         self.blockimage.append([tmpImage])
-        tmpImage = pygame.image.load("data\image\\blocks\\block_blue.png")
+        tmpImage = pygame.image.load(os.path.abspath("data/image/blocks/block_blue.png"))
         tmpImage = tmpImage.convert_alpha()
         self.blockimage.append([tmpImage])
         #Load figure of block when it's explode
         for i in range(3):
-            imgname = "data\image\\blocks\\explode%d.png" % i
+            imgname = os.path.abspath("data/image/blocks/explode%d.png" % i)
             tmpImage = pygame.image.load(imgname)
             tmpImage = tmpImage.convert_alpha()
             self.explodeimage.append(tmpImage)
         #Load disable images
-        
-        
+
+
     def bIsPointIntersec(self, _refX, _refY):
         for i in range(len(self.blocks)):
             if self.blocks[i].Enable:
                 return self.blocks[i].isPointIntersec(_refX,_refY)
-    
+
     def countEnableBlocks(self):
         count = 0;
         for i in range(len(self.blocks)):

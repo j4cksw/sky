@@ -1,25 +1,28 @@
 #Game over
 import pygame
+import os
 from pygame.locals import *
 class game_state_gameover():
+    
     def __init__(self):
-        self.background = pygame.image.load("data\image\\background\game_over.png")
+        self.background = pygame.image.load(os.path.abspath("data/image/background/game_over.png"))
         self.clock = pygame.time.Clock()
         self.state = ""
         self.timer = 0
+
     def vInit(self):
         pass
-        
+
     def vProcess(self):
         self.clock.tick(30)
         self.timer += 1
         if self.timer > 60:
             self.state = "END"
-        
+
     def vRender(self, _screen):
         _screen.blit(self.background,(0,0))
         pygame.display.flip()
-        
+
     def vMain(self, _screen):
         keepGoing = True
         while keepGoing:
@@ -28,7 +31,7 @@ class game_state_gameover():
                 keepGoing = False
                 return 1
             self.vRender(_screen)
-            
+
 
 if __name__ == "__main__":
     pygame.init()

@@ -1,27 +1,29 @@
 #Ending
 import pygame
 from pygame.locals import *
+import os
+
 class game_state_ending():
     def __init__(self):
-        self.background = pygame.image.load("data\image\\background\ending.png")
+        self.background = pygame.image.load(os.path.abspath("data/image/background/ending.png"))
         self.clock = pygame.time.Clock()
         self.state = ""
         self.timer = 0
-        
+
     def vInit(self):
         pass
-        
+
     def vProcess(self):
         self.clock.tick(30)
         self.timer += 1
-        
+
         if self.timer > 60:
             self.state = "END"
-        
+
     def vRender(self, _screen):
         _screen.blit(self.background,(0,0))
         pygame.display.flip()
-        
+
     def vMain(self, _screen):
         keepGoing = True
         while keepGoing:
@@ -30,7 +32,7 @@ class game_state_ending():
                 keepGoing = False
                 return 1
             self.vRender(_screen)
-            
+
 
 if __name__ == "__main__":
     pygame.init()
@@ -38,4 +40,3 @@ if __name__ == "__main__":
     pygame.display.set_caption("Test intro state")
     game = game_state_ending()
     game.vMain(screen)
-        

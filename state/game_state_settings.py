@@ -2,13 +2,14 @@
 import pygame
 from pygame.locals import *
 from configobj import ConfigObj
+import os
 #config = ConfigObj(filename)
 
 class game_state_settings():
-  
-    
+
+
     def __init__(self, _config = None):
-        self.background = pygame.image.load("data\image\\background\settings.jpg")
+        self.background = pygame.image.load(os.path.abspath("data\image\\background\settings.jpg"))
         self.font = pygame.font.Font("cpu.ttf", 36)
         self.config = _config
         self.updateList()
@@ -26,7 +27,7 @@ class game_state_settings():
         self.currentItem = 0
         self.state = ""
         #print self.config['screen']['fullscreen']
-    
+
     def vProcess(self):
         self.clock.tick(30)
         self.timer += 1
@@ -37,10 +38,10 @@ class game_state_settings():
                     self.state = "END"
             if event.type == QUIT:
                 exit()
-                    
+
 ##                else:
 ##                    self.state = "END"
-    
+
     def vRender(self, _screen):
         linex = 400
         liney = 50
@@ -51,14 +52,14 @@ class game_state_settings():
             section_rect.center = (linex, liney)
             liney += 36
             _screen.blit(self.sectionList[section], section_rect)
-            
+
             #Blit it's options
             for list in range(len(self.optionList[section])):
                 list_rect = self.optionList[section][list].get_rect()
                 list_rect.center = (linex, liney)
                 liney += 36
                 _screen.blit(self.optionList[section][list], list_rect)
-        
+
         #Blit settings command
         for command in range(len(self.commandList)):
             command_rect = self.commandList[command].get_rect()
@@ -66,7 +67,7 @@ class game_state_settings():
             liney += 36
             _screen.blit(self.commandList[command], command_rect)
         pygame.display.flip()
-    
+
     def vMain(self, _screen):
         keepGoing = True
         while keepGoing:
@@ -75,7 +76,7 @@ class game_state_settings():
                 keepGoing = False
                 return 1
             self.vRender(_screen)
-    
+
     def updateList(self):
         screenOptions = [
                             self.font.render("Full screen : "+self.config['fullscreen'],True,(255,255,255))
@@ -93,7 +94,7 @@ class game_state_settings():
                             self.font.render("Fire : "+ pygame.key.name(int(self.config['key']['fire'])),True,(255,255,255)),
                             ]
         self.optionList = [ screenOptions, soundOptions, keySettings ]
-    
+
 
 if __name__ == "__main__":
     pygame.init()

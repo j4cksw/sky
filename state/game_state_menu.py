@@ -1,12 +1,14 @@
 import pygame
 from pygame.locals import *
+import os
+
 class game_state_menu():
     def __init__(self):
-        self.background = pygame.image.load("data\image\\background\menu.png")
+        self.background = pygame.image.load(os.path.abspath("data/image/background/menu.png"))
         self.clock = pygame.time.Clock()
         self.state = ""
         self.timer = 0
-            
+
     def vProcess(self):
         self.clock.tick(30)
         self.timer += 1
@@ -18,11 +20,11 @@ class game_state_menu():
                     self.state = "OPTIONS"
                 else:
                     self.state = "END"
-        
+
     def vRender(self, _screen):
         _screen.blit(self.background,(0,0))
         pygame.display.flip()
-        
+
     def vMain(self, _screen):
         keepGoing = True
         while keepGoing:
@@ -34,7 +36,7 @@ class game_state_menu():
                 keepGoing = False
                 return 5
             self.vRender(_screen)
-            
+
 
 if __name__ == "__main__":
     pygame.init()
@@ -42,4 +44,3 @@ if __name__ == "__main__":
     pygame.display.set_caption("Test menu state")
     game = game_state_menu()
     game.vMain(screen)
-    
