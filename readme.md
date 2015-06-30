@@ -1,7 +1,9 @@
 #Installing pygame
-    [I'm an inline-style link](https://www.google.com)
-    Note that I use python2
-    You can follow instruction in the link but change a little bit
+    Follow the instruction here.
+    http://pygame.org/wiki/macintosh
+    
+    Note that I use python2.
+    You can follow instruction in the link but change a little bit.
     From
         >brew install python3 hg sdl sdl_image sdl_mixer sdl_ttf portmidi
     To
