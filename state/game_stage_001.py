@@ -17,7 +17,7 @@ class game_stage_001():
 
         self.state = "INIT"
         pygame.mixer.init()
-        pygame.mixer.music.load(os.path.abspath("data/bgm/cutman.mp3"))
+        pygame.mixer.music.load(os.path.abspath("data/bgm/zeoryma.mid"))
         pygame.mixer.music.set_volume(0.5)
         pygame.mixer.music.play(-1, 0.0)
 
@@ -45,8 +45,8 @@ class game_stage_001():
         self.mouse_pos = self.ship.fGetPos()
         self.timer = 0
         #load font
-        self.centerFont = pygame.font.Font(os.path.abspath("data/font/cpu.ttf", 36))
-        self.bigfont = pygame.font.Font(os.path.abspath("data/font/cpu.ttf", 120))
+        self.centerFont = pygame.font.Font(os.path.abspath("data/font/cpu.ttf"), 36)
+        self.bigfont = pygame.font.Font(os.path.abspath("data/font/cpu.ttf"), 120)
         #center message
         self.msg = ""
         self.Message = self.bigfont.render("GET READY!!",True,( 255, 255, 255))
