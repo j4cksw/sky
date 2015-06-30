@@ -1,6 +1,6 @@
-Installing pygame
+#Installing pygame
     http://pygame.org/wiki/macintosh
-    *Note that I use python2
+    Note that I use python2
     You can follow instruction in the link but change a little bit
     From
         >brew install python3 hg sdl sdl_image sdl_mixer sdl_ttf portmidi
@@ -14,5 +14,5 @@ Installing pygame
     Restart may br required.
 
 
-Running The Game
+#Running The Game
     >python main.py
