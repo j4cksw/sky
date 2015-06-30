@@ -1,5 +1,5 @@
 #Installing pygame
-    http://pygame.org/wiki/macintosh
+    [http://pygame.org/wiki/macintosh](http://pygame.org/wiki/macintosh)
     Note that I use python2
     You can follow instruction in the link but change a little bit
     From
